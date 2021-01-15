@@ -8,6 +8,8 @@ function multiply(a, b) {
     return a * b;
 }
 function divide(a, b) {
+    if(b == 0)
+    return "Division by 0 not allowed!!";
     return a / b;
 }
 function operate(operator, a, b) {

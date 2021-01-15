@@ -62,7 +62,7 @@ body{
 	justify-content: center;
 	align-items: center;
 	font-size: 200%;
-	border: none;
+	border: 0.25px solid var(--divider-color);
 	color: var(--primary-text-color);
 	background-color: var(--fourth-color);
 	outline: none;
