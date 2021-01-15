@@ -1,5 +1,5 @@
 function add(a, b) {
-    return a + b;
+    return +a + +b;
 }
 function subtract(a, b) {
     return a - b;
@@ -20,10 +20,24 @@ function operate(operator, a, b) {
     if (operator == '*')
         return multiply(a, b);
 }
-
 let display = document.getElementById("display");
 let calc = document.querySelector(".container");
 let equals = document.getElementById("equals");
+let operand1;
+let operand2;
+function addOperatorButton(operator, gridArea) {
+    let button = document.createElement('button');
+    button.textContent = operator;
+    button.style.gridArea = gridArea;
+    calc.appendChild(button);
+    button.addEventListener("click", (event) => disOperator(event));
+
+}
+document.getElementById("clear").addEventListener("click", () => {
+    display.textContent = '';
+});
+
+
 
 function createDigits() {
     for (let i = 0; i <= 9; i++) {
@@ -39,13 +53,17 @@ function createDigits() {
 function dis(event) {
     display.textContent += event.target.innerText;
 }
-function addOperatorButton(operator, gridArea) {
-    let button = document.createElement('button');
-    button.textContent = operator;
-    button.style.gridArea = gridArea;
-    calc.appendChild(button);
-    button.addEventListener("click", (event) => dis(event))
 
+function disOperator(event) {
+    const d = display.textContent;
+    const opIndex = d.search(/[+-/*]/);
+    if (opIndex !== -1) {
+        const op = d.charAt(opIndex);
+        const a = d.substring(0, opIndex);
+        const b = d.substring(opIndex + 1, d.length);
+        display.textContent = operate(op, a, b);
+    }
+        dis(event);
 }
 createDigits();
 addOperatorButton('+', "s10");
@@ -53,10 +71,14 @@ addOperatorButton('-', "s11");
 addOperatorButton('*', "s12");
 addOperatorButton('/', "s13");
 
-document.getElementById("clear").addEventListener("click", () => {
-    display.textContent = '';
-})
 
 equals.addEventListener('click', () => {
-    display.textContent.indexOf()
+    const d = display.textContent;
+    const opIndex = d.search(/[+-/*]/);
+    if (opIndex !== -1) {
+        const op = d.charAt(opIndex);
+        const a = d.substring(0, opIndex);
+        const b = d.substring(opIndex + 1, d.length);
+        display.textContent = operate(op, a, b);
+    }
 })

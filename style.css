@@ -66,6 +66,7 @@ body{
 	color: var(--primary-text-color);
 	background-color: var(--fourth-color);
 	outline: none;
+	padding: 0;
 	
 }
 
